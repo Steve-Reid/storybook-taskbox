@@ -1,7 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
+  // This is the input for our task title. In practice we would probably update the styles for this element
+  // but for this tutorial, let's fix the problem with an inline style:
   return (
     <div className={`list-item ${state}`}>
       <label className="checkbox">
@@ -14,7 +16,13 @@ function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
         <span className="checkbox-custom" onClick={() => onArchiveTask(id)} />
       </label>
       <div className="title">
-        <input type="text" value={title} readOnly={true} placeholder="Input title" />
+        <input
+          type="text"
+          value={title}
+          readOnly={true}
+          placeholder="Input title"
+          style={{ 'text-overflow': 'ellipsis' }}
+        />
       </div>
 
       <div className="actions" onClick={event => event.stopPropagation()}>
@@ -25,17 +33,17 @@ function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
 Task.propTypes = {
   task: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    state: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired
   }),
   onArchiveTask: PropTypes.func,
-  onPinTask: PropTypes.func,
-};
+  onPinTask: PropTypes.func
+}
 
-export default Task;
+export default Task
